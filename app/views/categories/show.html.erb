@@ -1,16 +1,45 @@
-<h1><%= @category.name %></h1>
+<% first_bookmark = @category.bookmarks.first %>
+<div class="banner" style="background-image: url('<%= first_bookmark&.recipe&.image_url %>') ;">
+</div>
 
- <ul>
- <% @category.bookmarks.each do |bookmark| %>
-  <li>
-      <h3><%= bookmark.recipe.name%></h3>
-      <p><%= bookmark.recipe.description %></p>
-      <%= link_to 'Delete', bookmark_path(bookmark), class:"btn btn-flat", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?"} %>
- </li>
+<div class="container w-75">
+  <div class="info-top">
+    <h2>Recipes</h2>
+    <%= link_to 'Add a Recipe', new_category_bookmark_path(@category), class: "btn btn-flat" %>
+  </div>
+
+
+  <div class="cards">
+
+    <% @category.bookmarks.each do |bookmark| %>
+      <div class="card-trip">
+      <img src="<%= bookmark.recipe.image_url %>"/>
+
+      <%= link_to bookmark_path(bookmark),
+          data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?"},
+          class: 'btn-delete' do %>
+          <i class="fa-solid fa-trash"></i>
       <% end %>
-</ul>
 
-      <%= link_to 'Add a recipe', new_category_bookmark_path(@category),class: "btn btn-flat" %>
+      <div class="card-trip-description">
+        <h3><%= bookmark.recipe.name %></h3>
+        <p><%= bookmark.recipe.description.truncate(100) %></p>
+      </div>
 
+      <div class="card-trip-infos">
+        <div>
+          <p><%= bookmark.comment %></p>
+        </div>
 
-      <%= link_to 'Home',categories_path, class: "btn btn-flat" %>
+        <div>
+          <%= bookmark.recipe.rating %><%= '⭐' * bookmark.recipe.rating.floor %>
+        </div>
+    </div>
+  </div>
+
+  <% end %>
+  </div>
+</div>
+
+<%= link_to "Add a recipe", new_category_bookmark_path(@category)%>
+<%= link_to "Home", categories_path %>

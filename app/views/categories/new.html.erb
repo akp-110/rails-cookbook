@@ -1,6 +1,11 @@
+<div class="form-new">
 <h1> Create a new Category</h1>
 
 <%= simple_form_for (@category) do |f| %>
-<%= f.input :name %>
-<%= f.submit  %>
+<%= f.input :name, placeholder: "The category name..." %>
+<%= f.submit class: "btn btn-flat" %>
 <% end %>
+<div>
+<%= link_to 'Back to Home', categories_path, class: "btn btn-flat" %>
+</div>
+</div>
