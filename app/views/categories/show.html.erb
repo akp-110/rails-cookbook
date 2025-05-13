@@ -5,7 +5,12 @@
   <li>
       <h3><%= bookmark.recipe.name%></h3>
       <p><%= bookmark.recipe.description %></p>
-      <%= link_to 'Delete', bookmark_path(bookmark), class:"btn btn-secondary", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?"} %>
+      <%= link_to 'Delete', bookmark_path(bookmark), class:"btn btn-flat", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this list?"} %>
  </li>
       <% end %>
 </ul>
+
+      <%= link_to 'Add a recipe', new_category_bookmark_path(@category),class: "btn btn-flat" %>
+
+
+      <%= link_to 'Home',categories_path, class: "btn btn-flat" %>
