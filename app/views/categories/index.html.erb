@@ -13,9 +13,10 @@
 
 <div class="cards">
   <% @categories.each do |category| %>
+  <% recipe_image = category.bookmarks.first&.recipe&.image_url %>
 
      <%= link_to category_path(category) do %>
-      <div class= "card-category" style="background-image: url('<%= image_path("banner.jpg") %>')">
+      <div class= "card-category" style="background-image: url('<%= recipe_image%>')">
         <div>
           <h3><%= category.name %></h3>
             <p><%= category.bookmarks.count %> recipes </p>

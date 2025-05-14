@@ -6,6 +6,7 @@ gem "bootstrap", "~> 5.2"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "sassc-rails"
+gem "dotenv-rails"
 
 # Gem for simple form
 gem "simple_form"
